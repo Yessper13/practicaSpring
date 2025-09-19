@@ -1,5 +1,7 @@
 package com.example.practica.modelos;
 
+import com.example.practica.ayudas.Estado;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -26,17 +28,14 @@ public class Producto {
     @JsonBackReference(value = "relacionproveedoraproductos")
     private Proveedor proveedor;
 
-    
-
-
     public Producto() {
     }
 
-    public Producto(Integer id, String nombreProducto, String descripcionProducto, Double precio, Estado estado, Integer stock) {
+    public Producto(Integer id, String nombreProducto, String descripcionProducto, Double valor, Estado estado, Integer stock) {
         this.id = id;
         this.nombreProducto = nombreProducto;
         this.descripcionProducto = descripcionProducto;
-        this.precio = precio;
+        this.valor = valor;
         this.estado = estado;
         this.stock = stock;
     }
@@ -66,11 +65,11 @@ public class Producto {
     }
 
     public Double getPrecio() {
-        return precio;
+        return valor;
     }
 
     public void setPrecio(Double precio) {
-        this.precio = precio;
+        this.valor = valor;
     }
 
     public Estado getEstado() {

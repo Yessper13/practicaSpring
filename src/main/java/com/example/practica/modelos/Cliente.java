@@ -16,10 +16,15 @@ public class Cliente {
     @Column
     @Enumerated(EnumType.STRING)
     private Preferencia preferencia;
+
     @OneToOne
     @JoinColumn(name = "FK_usuarioCliente", referencedColumnName = "id")
     @JsonManagedReference(value = "relacionusuariocliente")
     private Usuario usuario;
+
+    @OneToMany(mappedBy = "cliente")
+    @JsonManagedReference(value = "relacionClienteFactura")
+    private Factura factura;
 
     public Cliente() {
     }
