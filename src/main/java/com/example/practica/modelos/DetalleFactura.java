@@ -1,5 +1,6 @@
 package com.example.practica.modelos;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -20,12 +21,14 @@ public class DetalleFactura {
     private Integer precio;
 
 
-    @OneToMany(mappedBy = "detalleFactura")
-    @JsonManagedReference(value = "relaciondetallefacturaproducto")
+    @ManyToOne
+    @JsonBackReference(value = "relaciondetallefacturaproducto")
+    @JoinColumn(name = "fk_producto", referencedColumnName = "id")
     private Producto producto;
 
-    @OneToMany(mappedBy = "detalleFactura")
-    @JsonManagedReference(value = "relaciondetallefacturafactura")
+    @ManyToOne
+    @JsonBackReference(value = "relaciondetallefacturafactura")
+    @JoinColumn(name = "fk_factura", referencedColumnName = "id")
     private Factura factura;
 
     public DetalleFactura() {}
@@ -36,8 +39,6 @@ public class DetalleFactura {
         this.subtotal = subtotal;
         this.iva = iva;
         this.precio = precio;
-        this.producto = producto;
-        this.factura = factura;
     }
 
     public Integer getId() {return id;}
