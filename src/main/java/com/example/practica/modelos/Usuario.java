@@ -26,10 +26,14 @@ public class Usuario {
     @Column
     @Enumerated(EnumType.STRING)
     private Roles roles;
+    //relacion usuario -> cliente
     @OneToOne (mappedBy = "usuario")
     @JsonBackReference(value = "relacionusuariocliente")
     private Cliente cliente;
-
+    //relacion usuario -> proveedor
+    @OneToOne(mappedBy = "usuario")
+    @JsonBackReference(value = "relacionUsuarioProveedor")
+    private Proveedor proveedor;
 
     public Usuario() {
     }
