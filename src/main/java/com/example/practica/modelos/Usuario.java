@@ -43,7 +43,8 @@ public class Usuario {
     @JsonBackReference(value = "relacionUsuarioProveedor")
     private Proveedor proveedor;
     //relacion usuario -> vendedor
-    @OneToOne()
+    @OneToOne(mappedBy = "usuario")
+    @JsonBackReference(value = "relacionUsuarioVendedor")
     private Vendedor vendedor;
 
     public Usuario() {
