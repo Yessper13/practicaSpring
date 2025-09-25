@@ -32,6 +32,11 @@ public class Factura {
     @JsonManagedReference(value = "relaciondetallefacturafactura")
     private ArrayList<DetalleFactura>  detalleFactura;
 
+    @ManyToOne
+    @JoinColumn(name = "fk_vendedor", referencedColumnName = "id")
+    @JsonBackReference(value = "relacionVendedorFactura")
+    private Vendedor vendedor;
+
     public Factura() {
     }
 

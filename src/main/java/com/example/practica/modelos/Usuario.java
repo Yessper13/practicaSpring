@@ -8,21 +8,29 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "usuario")
 public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column (name = "nombre", unique = false, nullable = false, length = 50)
     private String nombre;
+
     @Column (unique = false, nullable = false, length = 10)
     private Integer telefono;
+
     @Column(unique = false, nullable = false, length = 50)
     private String direccion;
+
     @Column(unique = true, nullable = false, length = 50)
     private String correo;
+
     @Column(unique = false, nullable = false, length = 3)
     private Integer edad;
+
     @Column(unique = true, nullable = false, length = 10)
     private Integer cedula;
+
     @Column
     @Enumerated(EnumType.STRING)
     private Roles roles;
@@ -34,6 +42,10 @@ public class Usuario {
     @OneToOne(mappedBy = "usuario")
     @JsonBackReference(value = "relacionUsuarioProveedor")
     private Proveedor proveedor;
+    //relacion usuario -> vendedor
+    @OneToOne(mappedBy = "usuario")
+    @JsonBackReference(value = "relacionUsuarioVendedor")
+    private Vendedor vendedor;
 
     public Usuario() {
     }
