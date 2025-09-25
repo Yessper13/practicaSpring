@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "factura")
@@ -24,12 +25,12 @@ public class Factura {
 
     @ManyToOne
     @JoinColumn(name = "fk_Cliente", referencedColumnName = "id")
-    @JsonBackReference(value = "realacionClienteFactura")
-    private Cliente cliente;
+    @JsonBackReference(value = "relacionClienteFactura")
+    private Cliente  cliente;
 
     @OneToMany(mappedBy = "factura")
     @JsonManagedReference(value = "relaciondetallefacturafactura")
-    private DetalleFactura detalleFactura;
+    private ArrayList<DetalleFactura>  detalleFactura;
 
     public Factura() {
     }

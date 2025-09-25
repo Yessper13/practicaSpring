@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.lang.ref.Reference;
+import java.util.ArrayList;
 
 @Entity
 @Table(name="cliente")
@@ -22,9 +23,10 @@ public class Cliente {
     @JsonManagedReference(value = "relacionusuariocliente")
     private Usuario usuario;
 
+
     @OneToMany(mappedBy = "cliente")
     @JsonManagedReference(value = "relacionClienteFactura")
-    private Factura factura;
+    private ArrayList<Factura> factura;
 
     public Cliente() {
     }

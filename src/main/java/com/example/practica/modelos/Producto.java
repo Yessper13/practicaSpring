@@ -2,7 +2,10 @@ package com.example.practica.modelos;
 
 import com.example.practica.ayudas.Estado;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "productos")
@@ -27,6 +30,11 @@ public class Producto {
     @JoinColumn(name = "fk_proveedor", referencedColumnName = "id")
     @JsonBackReference(value = "relacionproveedoraproductos")
     private Proveedor proveedor;
+
+
+    @OneToMany (mappedBy = "producto")
+   @JsonManagedReference(value = "relaciondetallefacturaproducto")
+    private ArrayList<DetalleFactura> detalleFactura;
 
     public Producto() {
     }
